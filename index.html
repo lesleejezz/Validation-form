@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Form</title>
+<style>
+    body{
+        background-color: black;
+        color: white;
+    }
+    .container {
+        max-width: 400px;
+        margin: 10px auto;
+        padding: 10px 20px;
+        border-radius: 5px;
+        width: 180px; 
+    }
+    h3 {
+        text-align: center;
+    }
+    button{
+        color: black;
+        background-color: rgba(227, 220, 24, 0.868);
+        border-radius: 10%;
+        font-size: 30px;
+        font-family: monospace;
+        padding: 15px 30x;
+    }
+    button[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 98%;
+        margin-top: 3px;
+        font-size: 15px;
+    }
+    .quest {
+        text-align: center;
+        margin-top: 150px;
+        margin-bottom: 50px;
+        font-size: 35px;
+        font-family: monospace;
+    }
+</style>
+
+</head>
+<body>
+
+    <div class="quest">
+        <p id="question"><span>Will you go on a date with me?</span></p>
+        <button class="btn" id="Yes" onclick="playMusic()"><b>Yes</b></button>
+        <button class="btn" id="No"><b>No</b></button>
+    </div> 
+
+    <audio id="myAudio">
+        <source src="Kilig memes.mp3" type="audio/mpeg">
+      </audio>
+
+<div class="container">
+    <h3>Login Form</h3>
+    <form id="loginForm" class="needs-validation" novalidate>
+        <div>
+            <label for="email">Email:<br></label>
+            <input type="email" id="emailInput" name="email" required>
+            <span id="emailError" class="error"></span>
+        </div>
+        <div>
+            <label for="password">Password:<br></label>
+            <input type="password" id="passwordInput" name="password" required>
+            <span id="passwordError" class="error"></span>
+            <div id="passwordLengthMessage" class="error" style="display: none;">Password must be at least 8 characters long.</div>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+</body>
+
+<script>
+
+var audio = document.getElementById("myAudio");
+        function playMusic() {
+           audio.play();
+        }
+
+    const noBtn = document.getElementById('No');
+    const yesBtn = document.getElementById('Yes');
+    const ques = document.getElementById('question');
+    let btn = document.getElementById('btn');
+        let position;
+
+        noBtn.addEventListener('mouseover', () => {
+            let randX = Math.floor(Math.random() * (200 - 50) + 1);
+            let randY = Math.floor(Math.random() * (-40 - 90) + 1);
+            noBtn.style.transform = `translate(${randX}px, ${randY}px)`;
+        });
+    yesBtn.addEventListener("click",()=>{
+        ques.innerHTML = "YIEEEEHHHHH<br>HAHAHAHA<br>😘🥰"
+    })
+
+    var form = document.getElementById('loginForm');
+    var passwordLengthMessage = document.getElementById('passwordLengthMessage');
+    
+    form.addEventListener('submit', function(event) {
+        if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        } else {
+            var email = document.getElementById('emailInput');
+            var password = document.getElementById('passwordInput');
+    
+            email.classList.add('is-valid');
+    
+            if (password.value.length < 8 ){
+                password.classList.add('is-invalid');
+                passwordLengthMessage.style.display = 'block';
+                alert('Password must be 8 characters long');
+            } else {
+                password.classList.remove('is-invalid');
+                passwordLengthMessage.style.display = 'none';
+                alert('Successful login!');
+            }
+        }
+    
+        form.classList.add('was-validated');
+    }, false);
+
+</script>
+</html>
